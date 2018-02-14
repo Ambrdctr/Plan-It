@@ -1,7 +1,0 @@
-Serveur :
-	login -> l2_gr1
-	password -> 9wcgPLNf
-	
-URL -> /etu-info/l2_gr1
-
-BDD -> /etu-info/admin

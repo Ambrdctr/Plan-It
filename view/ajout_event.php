@@ -1,12 +1,11 @@
 <?php 
-afficher();
 if (isset($_SESSION["error"])) {
 	echo "<p class='required'>".$_SESSION['error']."</p>";
 	unset($_SESSION["error"]);
 }
 ?>
 <form method="POST" action="." id="event">
-	<label for="id_type">Nom de l'évenement <span class="required">*</span> </label>
+	<label for="id_type">Nom de l'evenement <span class="required">*</span> </label>
 	<select name="type" form="event" id="id_type" required autofocus>
 		<option value="" selected disabled hidden></option>
 		<?php
@@ -17,10 +16,10 @@ if (isset($_SESSION["error"])) {
 		?>
 	</select>
 
-	<label for="id_desc">Description de l'évenement </label>
+	<label for="id_desc">Description de l'evenement </label>
 	<textarea name="desc" id="id_desc" placeholder="Description"></textarea>
 
-	<p>Début</p>
+	<p>Debut</p>
 	<label for="id_Ddebut">Date <span class="required">*</span> </label>
 	<input type="date" name="Ddebut" id="id_Ddebut" required="true" />
 	<label for="id_Hdebut">Heure </label>
