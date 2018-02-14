@@ -15,12 +15,21 @@
 			disconnect();
 		}
 		if ($_POST["action"] == "CONNEXION") {
-			log_in($_POST["login"],$_POST["pwd"]);
-			$page = 'home';
+			if(log_in($_POST["login"],$_POST["pwd"])) {
+				$page = 'home';
+			} else {
+				$page = 'sign-in';
+			}
+
+			
 		}
 		elseif ($_POST["action"] == "CREER") {
-			new_account($_POST["login"],$_POST["mail"],$_POST["pwd1"],$_POST["pwd2"]);
-			$page = 'home';
+			if(new_account($_POST["login"],$_POST["mail"],$_POST["pwd1"],$_POST["pwd2"])) {
+				$page = 'home';
+			} else {
+				$page = 'sign-up';
+			}
+			
 		}
 
 	}

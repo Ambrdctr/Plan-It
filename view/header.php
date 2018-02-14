@@ -11,11 +11,8 @@
 <header>
 	    <img src="./images/logo.png" alt="Plan'it" id="logo"/>
 	    	<?php
-				if (!isset($_SESSION["log"])) {
-					if (isset($_SESSION['error'])) {
-						echo "<p class='error'>" . $_SESSION['error'] . "</p>";
-						unset($_SESSION['error']);
-					}
+			if (!isset($_SESSION["log"])) {
+
 			?>
 	    			<form id="connex_inscr" method="post" action="index.php">
 	    				<button class="button" name="action" type="submit" value="SIGNIN"><span>Connexion </span></button>

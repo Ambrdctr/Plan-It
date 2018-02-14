@@ -2,6 +2,12 @@
 
 <article class="connect">
 <h1>Création d'un nouveau compte</h1>
+		<?php 
+			if (isset($_SESSION["error"])) {
+				echo "<p class='required'>".$_SESSION['error']."</p>";
+				unset($_SESSION["error"]);
+			}
+		?>
 	<form method="post" action="index.php">
 		<p>
 			<label for='id_login'>Pseudo<sup class='error'>*</sup> : </label>
