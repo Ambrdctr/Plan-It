@@ -1,5 +1,4 @@
 ﻿<?php
-	
 	$page = 'home';
 
 	if (isset($_GET["page"])) {
@@ -15,12 +14,12 @@
 		if ($_POST["action"] == "SIGNOUT") {
 			disconnect();
 		}
-		if ($_POST["action"] == "CONNECT") {
+		if ($_POST["action"] == "CONNEXION") {
 			log_in($_POST["login"],$_POST["pwd"]);
 			$page = 'home';
 		}
-		elseif ($_POST["action"] == "CREATE") {
-			new_account($_POST["login"],$_POST["pwd1"],$_POST["pwd2"]);
+		elseif ($_POST["action"] == "CREER") {
+			new_account($_POST["login"],$_POST["mail"],$_POST["pwd1"],$_POST["pwd2"]);
 			$page = 'home';
 		}
 
