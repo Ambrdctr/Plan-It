@@ -2,7 +2,11 @@
 	// Model
 	include_once "model/bdd.php";
 	include_once "model/afficher.php";
+
 	include_once "model/ajouts.php";
+
+
+	include_once "model/connexion.php";
 
 	session_start();
 
