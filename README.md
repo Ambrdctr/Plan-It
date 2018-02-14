@@ -1,2 +1,0 @@
-# Plan-It
-Agenda collaboratif
