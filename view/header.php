@@ -10,27 +10,10 @@
 <body>
 <header>
 	    <img src="./images/logo.png" alt="Plan'it" id="logo"/>
-	    	<?php
-				if (!isset($_SESSION["log"])) {
-					if (isset($_SESSION['error'])) {
-						echo "<p class='error'>" . $_SESSION['error'] . "</p>";
-						unset($_SESSION['error']);
-					}
-			?>
-	    			<form id="connex_inscr" method="post" action="index.php">
-	    				<button class="button" name="action" type="submit" value="SIGNIN"><span>Connexion </span></button>
-	    				<button class="button" name="action" type="submit" value="SIGNUP"><span>Inscription </span></button>
-	    			</form>
-	    	<?php
-	    		}
-	    		else{
-	    	?>
-	    			<form id="connex_inscr" method="post" action="index.php">
-						<button class="button" name='action' type='submit' value='SIGNOUT'><span>Déconnexion </span></button>
-					</form>
-			<?php
-				}
-	    	?>
+	    	<form id="connex_inscr">
+	    		<button class="button" name="Connexion"><span>Connexion </span></button>
+	    		<button class="button" name="Connexion"><span>Inscription </span></button>
+	    	</form>
 	    
 </header>
 <nav>
