@@ -1,5 +1,4 @@
 <?php 
-<<<<<<< HEAD
 afficher(); 
 ?>
 
@@ -22,7 +21,3 @@ afficher();
 	<label for="id_Hfin">Heure </label>
 	<input type="time" name="Hfin" id="id_Hfin" />
 </form>
-=======
-afficher();
-?>
->>>>>>> origin/Raphael_Paul

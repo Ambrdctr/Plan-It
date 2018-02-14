@@ -57,7 +57,9 @@ function new_account($login,$mail,$pwd1,$pwd2) {
 function log_in($login,$pwd) {
 	global $c;
 
+	
 	$rempli = !empty(trim($login)) && !empty(trim($pwd));
+	
 	if ($rempli) {
 		$login = mysqli_real_escape_string($c,strip_tags($login)); // Reformatage pour eviter les "hacks" et affichages etranges
 		$pwd = mysqli_real_escape_string($c,strip_tags($pwd));
@@ -79,12 +81,17 @@ function log_in($login,$pwd) {
 		}
 		if ($goodPwd) {
 			$_SESSION["log"] = $login;
+			return true;
+
 		} else {
 			$_SESSION["error"] = "Nom d'utilisateur ou mot de passe incorrect !";
+			
 		}
 	} else {
 		$_SESSION["error"] = "Champs vides interdits !";
+		
 	}
+	return false;
 }
 
 
