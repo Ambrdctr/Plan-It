@@ -34,6 +34,7 @@ function new_account($login,$mail,$pwd1,$pwd2) {
 
 					$result = mysqli_query($c, $sql);
 					$_SESSION["log"] = $login;
+					return true;
 				} else {
 					$_SESSION["error"] = "Mots de passe différents !";
 				} 
@@ -46,6 +47,9 @@ function new_account($login,$mail,$pwd1,$pwd2) {
 	} else {
 		$_SESSION["error"] = "Champs vides interdits !";
 	}
+	return false;
+
+
 	
 
 }

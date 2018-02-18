@@ -1,23 +1,20 @@
-<?php 
-afficher(); 
-?>
+<section id="first">
+	
+<div id="div_logo">
+	<img src="./images/image.png" alt="logo" class="logo" />
+	<img src="./images/logo.png" alt="text_logo" class="logo black_img" />
+</div>
 
-<form method="POST" action="..">
-	<label for="id_nom">Nom de l'évenement <span class="required">*</span> </label>
-	<input type="text" name="nom" id="id_nom" placeholder="Nom" required="true" />
+<h1 class="devise">Planifiez-vous la vie.</h1>
 
-	<label for="id_desc">Description de l'évenement </label>
-	<textarea name="desc" id="id_desc" placeholder="Description"></textarea>
+<p class="description">
+	<span style="font-weight: bold;">Plan'it!</span> est un outil de gestion d'emploi du temps. A la fois intuitif et intelligent il vous permettra d'optimiser votre journée. Vous bénéfissiez aussi d'un assistant personnel 'Paul' pouvant prendre des rendez-vous ou encore proposer un créneau otpimal pour vos courses. <span style="font-weight: bold;">Plan'it!</span> est simple, efficace et personnalisable !
+</p>
 
-	<p>Début</p>
-	<label for="id_Ddebut">Date <span class="required">*</span> </label>
-	<input type="date" name="Ddebut" id="id_Ddebut" required="true" />
-	<label for="id_Hdebut">Heure </label>
-	<input type="time" name="Hdebut" id="id_Hdebut" />
-
-	<p>Fin</p>
-	<label for="id_Dfin">Date <span class="required">*</span> </label>
-	<input type="date" name="Dfin" id="id_Dfin" required="true" />
-	<label for="id_Hfin">Heure </label>
-	<input type="time" name="Hfin" id="id_Hfin" />
+<form id="its_free" method="post" action="index.php">
+	<button class="button_long button" name="action" type="submit" value="SIGNUP"><span>Inscrivez-vous, c'est gratuit !</span></button>
 </form>
+
+<p class="discret">Vous avez déjà un compte ? <a href="index.php?page=sign-in">Connectez-vous</a></p>
+
+</section>

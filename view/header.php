@@ -5,11 +5,12 @@
 	<title>Plan'it!</title>
 	<link rel="stylesheet" type="text/css" href="./css/style.css" />
 	<link rel="icon" href="./images/favicon.ico" />
+	<script src="./javascript/script.js"></script>
 
 </head>
 <body>
 <header>
-	    <img src="./images/logo.png" alt="Plan'it" id="logo"/>
+	    <a href="."><img src="./images/logo.png" alt="Plan'it" id="logo"/></a>
 	    	<?php
 			if (!isset($_SESSION["log"])) {
 
