@@ -10,11 +10,11 @@
 	?>
 	<form method="post" action="index.php">
 		<p>
-			<label for='id_login'>Pseudo<sup class='error'>*</sup> : </label>
+			<label for='id_login'>Identifiant : </label>
 			<input type='text' name='login' id='id_login' required placeholder="Login ou mail"/>
 		</p>
 		<p>
-			<label for='id_pwd'>Mot de passe<sup class='error'>*</sup> : </label>
+			<label for='id_pwd'>Mot de passe : </label>
 			<input type='password' name='pwd' id='id_pwd' required placeholder="Password"/>
 		</p>
 		<p>
@@ -23,6 +23,5 @@
 		</p>    
 	</form>
 </article>
-<p><sup class='error'>*</sup> : Champs obligatoires</p>
 
 </section>

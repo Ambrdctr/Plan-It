@@ -5,10 +5,10 @@
 	<title>Plan'it!</title>
 	<link rel="stylesheet" type="text/css" href="./css/style.css" />
 	<link rel="icon" href="./images/favicon.ico" />
-	<script src="./javascript/script.js"></script>
 
 </head>
 <body>
+<script src="./javascript/script.js"></script>
 <header>
 	    <a href="."><img src="./images/logo.png" alt="Plan'it" id="logo"/></a>
 	    	<?php

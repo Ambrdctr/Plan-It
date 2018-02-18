@@ -2,6 +2,12 @@
   margin: 0; padding: 0;
 }
 
+/* message d'erreur */
+
+.required {
+  color: red;
+}
+
 /*page d'accueil*/
 
 #div_logo {
