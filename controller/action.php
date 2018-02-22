@@ -23,6 +23,11 @@
 		if ($_POST["action"] == "newEvent") {
 			$page = 'ajout_event';
 		}
+
+		if ($_POST["action"] == "DELETE_EVENT") {
+			supprimer_event($_POST["idValue"]);
+		}
+
 		if ($_POST["action"] == "SIGNIN") {
 			$page = 'sign-in';
 		}
