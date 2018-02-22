@@ -28,5 +28,11 @@ function afficher_events() {
 		echo $row['nom']." ";
 		echo $row['description']."<br />";
 		echo substr($row['dateDebut'], 0, -3)."<br />";
+		?>
+			<form method="POST" action=".">
+				<input name='idValue' type='hidden' value='<?php echo $row["idEvent"]; ?>'/>
+				<input type='submit' name='action' value='DELETE_EVENT'/>
+			</form>
+		<?php
 	}
 }
