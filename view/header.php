@@ -1,19 +1,17 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Plan'it!</title>
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css" />
 	<link rel="icon" href="./images/favicon.ico" />
-
 </head>
 <body>
-<script src="./javascript/script.js"></script>
 <header>
 	    <a href="."><img src="./images/logo.png" alt="Plan'it" id="logo"/></a>
-	    	<?php
-			if (!isset($_SESSION["log"])) {
-
+	    <?php
+				if (!isset($_SESSION["log"])) {
 			?>
 	    			<form id="connex_inscr" method="post" action="index.php">
 	    				<button class="button" name="action" type="submit" value="SIGNIN"><span>Connexion </span></button>
@@ -29,12 +27,8 @@
 			<?php
 				}
 	    	?>
-	    
+
 </header>
-<nav>
-	<ul>
-	</ul>
-</nav>
 
 <?php
 		include_once "$page.php";
