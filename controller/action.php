@@ -24,6 +24,11 @@
 			$page = 'ajout_event';
 		}
 
+		if ($_POST["action"] == "newAgenda") {
+			print_r('test');
+			$page = 'ajout_agenda';
+		}
+
 		if ($_POST["action"] == "DELETE_EVENT") {
 			supprimer_event($_POST["idValue"]);
 		}
