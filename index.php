@@ -1,11 +1,12 @@
 <?php
+	session_start();
 	// Model
 	include_once "model/bdd.php";
 	include_once "model/ajouts.php";
 	include_once "model/connexion.php";
 	include_once "model/suppressions.php";
-
-	session_start();
+	include_once "model/recup_data.php";
+	//include_once "JSON/JSON_recup_events_agenda.php";
 
 	// Controller
 	include_once "controller/action.php";

@@ -49,3 +49,17 @@ function verifAddEventForm(f) {
       	return false;
    }
 }
+
+function verifAddAgendaForm(f) {
+	var titreOk = verifText(f.titre);
+	if (titreOk) {
+      	return true;
+	} else {
+		document.getElementById("js_error").innerHTML = "Dommage...";
+      	return false;
+   }
+}
+
+function ecrire(text, id) {
+	document.getElementById(id).innerHTML = text;
+}

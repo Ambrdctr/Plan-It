@@ -8,7 +8,7 @@
 <h1 class="devise">Planifiez-vous la vie.</h1>
 
 <p class="description">
-	<span style="font-weight: bold;">Plan'it!</span> est un outil de gestion d'emploi du temps. A la fois intuitif et intelligent il vous permettra d'optimiser votre journée. Vous bénéfissiez aussi d'un assistant personnel 'Paul' pouvant prendre des rendez-vous ou encore proposer un créneau otpimal pour vos courses. <span style="font-weight: bold;">Plan'it!</span> est simple, efficace et personnalisable !
+	<span style="font-weight: bold;">Plan'it!</span> est un outil de gestion d'emploi du temps. A la fois intuitif et intelligent il vous permettra d'optimiser votre journée. Vous bénéficierez aussi d'un assistant personnel 'Paul' pouvant prendre des rendez-vous ou encore proposer un créneau optimal pour vos courses. <span style="font-weight: bold;">Plan'it!</span> est simple, efficace et personnalisable !
 </p>
 
 <form id="its_free" method="post" action="index.php">

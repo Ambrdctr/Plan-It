@@ -76,7 +76,7 @@ header {
 	background-color: #333;
 	color: white;
 	display: flex;
-	justify-content: space-between; 
+	justify-content: space-between;
 }
 
 header #connex_inscr {
@@ -101,7 +101,7 @@ footer {
   font-size: 0.8em;
   text-align: center;
   padding: 50px;
-  background-color: #fff;
+  background-color: #ddd;
 }
 
 .copyrights {
@@ -110,6 +110,7 @@ footer {
   text-align: center;
   font-size: 0.8em;
   margin: 10px;
+  background-color: #fff;
 }
 
 /*Bouttons*/
@@ -162,4 +163,8 @@ footer {
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+label {
+  font-weight: normal;
 }
