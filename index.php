@@ -7,6 +7,8 @@
 	include_once "model/suppressions.php";
 	include_once "model/recup_data.php";
 	//include_once "JSON/JSON_recup_events_agenda.php";
+	include_once "model/groupe.php";
+	session_start();
 
 	// Controller
 	include_once "controller/action.php";
