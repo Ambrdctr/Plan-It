@@ -17,8 +17,7 @@
 			</select>
 		</div>
 	</div>
-
-
+	
 	<!-- Description -->
 	<br />
 	<label for="id_desc">Description de l'evenement </label>

@@ -11,13 +11,15 @@
 <body>
 
 	<!-- Ajout de la bibliothèque jQuery -->
-	<script type="text/javascript" src="./javascript/jquery-3.3.1.slim.min.js"></script>
-	
+	<script type="text/javascript" src="./javascript/jquery-3.3.1.min.js"></script>
+
 <header>
 	    <a href="."><img src="./images/logo.png" alt="Plan'it" id="logo"/></a>
 	    <?php
 				if (!isset($_SESSION["log"])) {
 			?>
+
+				</div>
 	    			<form id="connex_inscr" method="post" action="index.php">
 	    				<button class="button" name="action" type="submit" value="SIGNIN"><span>Connexion </span></button>
 	    				<button class="button" name="action" type="submit" value="SIGNUP"><span>Inscription </span></button>

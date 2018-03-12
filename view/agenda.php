@@ -45,7 +45,7 @@
 
 							<!-- Envoi -->
 							<input type="hidden" name="agenda" id="id_agenda" value="">
-			        <button type="submit" class="btn btn-success" name="action" value="AjouterEvent">Ajouter</button>
+			        <button type="submit" class="btn btn-success" name="action" value="AjouterEvent" onsubmit="request(document.getElementById('id_select'));">Ajouter</button>
 			      </div>
 					</form> <!-- fin du formulaire d'ajout d'event -->
 			    </div>
