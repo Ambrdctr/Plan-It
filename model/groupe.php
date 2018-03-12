@@ -110,3 +110,20 @@ function addPersonne($nomPersonne,$nomGroupe){
 		}
 
 }
+
+function deletePersonne($nomPers,$nomGr){
+		global $c;
+		
+		
+		
+
+		
+
+			$sql = "DELETE FROM utilisateur_groupe WHERE utilisateur='$nomPers'";
+			$result = mysqli_query($c, $sql);
+					
+
+
+		
+
+}

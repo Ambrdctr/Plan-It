@@ -1,160 +1,180 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+	<!-- Definition de l'encodage des characteres -->
 	<meta charset="UTF-8">
+
+	<!-- Titre de la page -->
 	<title>Plan'it!</title>
-	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+
+	<!-- Ajouts des fiches de style -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap-datetimepicker.min.css" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./css/style.css" />
+
+	<!-- Ajouts du favicon -->
 	<link rel="icon" href="./images/favicon.ico" />
 </head>
 <body>
-<header>
-	    <img src="./images/logo.png" alt="Plan'it" id="logo"/>
-
-	    	<?php
-			if (!isset($_SESSION["log"])) {
-
 	<!-- Ajout de la bibliothèque jQuery -->
 	<script type="text/javascript" src="./javascript/jquery-3.3.1.min.js"></script>
+	<!-- Popper -->
+	<script type="text/javascript" src="./javascript/popper.min.js"></script>
+	<!-- bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<header>
-	    <a href="."><img src="./images/logo.png" alt="Plan'it" id="logo"/></a>
+
+
+	    <!--<a href="."><img src="./images/logo.png" alt="Plan'it" id="logo"/></a>-->
 	    <?php
 				if (!isset($_SESSION["log"])) {
 			?>
-
-				</div>
-	    			<form id="connex_inscr" method="post" action="index.php">
-	    				<button class="button" name="action" type="submit" value="SIGNIN"><span>Connexion </span></button>
-	    				<button class="button" name="action" type="submit" value="SIGNUP"><span>Inscription </span></button>
-	    			</form>
-	    			
-				<button class="button" id="btnConnect" ><span>Connexion </span></button>
-				<button class="button" id="btnInscrip" ><span>Inscription </span></button>
-			
+				<!-- Vue de l'utilisateur deconnecté -->
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+					<a class="navbar-brand" href=".">
+				    <img src="./images/logo_P.png" width="30" height="30" class="d-inline-block align-top" alt="P">
+				    <img src="./images/logo.png" width="70" height="30" class="d-inline-block align-top" alt="Plan'it" id="logo">
+				  </a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+						</ul>
+						<li class="nav-item dropdown">
+						<button type="button" class="button nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Connexion </span></button>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						  <form class="px-4 py-3" method="post" action=".">
+									<div class="form-group">
+										<label for='id_login'>Identifiant</label>
+										<input type='text' class="form-control" name='login' id='id_login' required placeholder="Login ou mail"/>
+									</div>
+									<div class="form-group">
+										<label for='id_pwd'>Mot de passe</label>
+										<input type='password' class="form-control" name='pwd' id='id_pwd' required placeholder="Password"/>
+									</div>
+									<!-- Envoi -->
+									<button type='submit' name='action' value='CONNEXION' class="btn btn-success">Connexion</button>
+						  </form>
+						</div>
+					</li>
+	    			<button type="button" class="button blue" data-toggle="modal" data-target="#signupModal"><span>Inscription </span></button>
+					</div>
+					</nav>
 	    	<?php
 	    		}
 	    		else{
-	    	?>
-	    			<form id="connex_inscr" method="post" action="index.php">
-						<button class="button" name='action' type='submit' value='SIGNOUT'><span>Déconnexion </span></button>
-					</form>
-	    		<ul class="menuactif">
-  					<li><a href="#">Home</a></li>
-					<li><a href="#">About</a></li>
-					<li class="dropdown">
-						<a href="javascript:void(0)" class="dropbtn"><?php echo($_SESSION["log"]); ?></a>
-						<div class="dropdown-content">
-							<form id="menu_profil" action="index.php" method="post">
-						  	<input type="hidden" name="action" value="PROFIL"/></form> 
-						  	<a href='#' onclick='document.getElementById("menu_profil").submit()'>profil</a>
+						?>
+						<!-- Vue de l'utilisateur connecté -->
+						<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+							<a class="navbar-brand" href=".">
+						    <img src="./images/logo_P.png" width="30" height="30" class="d-inline-block align-top" alt="P">
+						    <img src="./images/logo.png" width="70" height="30" class="d-inline-block align-top" alt="Plan'it" id="logo">
+						  </a>
+							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+							<div class="collapse navbar-collapse" id="navbarSupportedContent">
+								<ul class="navbar-nav mr-auto">
+								</ul>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<button type="button" class="btn btn-secondary btn-circle"><span class='fa fa-user' aria-hidden='true'></span></button>
+										<?php echo $_SESSION['log']; ?>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="#">Action</a>
+										<a class="dropdown-item" href="#">Another action</a>
+										<div class="dropdown-divider"></div>
+										<form method="post" action=".">
+											<button class="btn btn-danger" name='action' type='submit' value='SIGNOUT'><span>Deconnexion</span>&nbsp;&nbsp;<span class='fa fa-sign-out' aria-hidden='true'></span></button>
+										</form>
+									</div>
+								</li>
 
-							<form id="menu_agenda" action="index.php" method="post">
-						  	<input type="hidden" name="action" value="AGENDA"/></form> 
-						  	<a href='#' onclick='document.getElementById("menu_agenda").submit()'>mes agendas</a>
-
-							<form id="menu_groupe" action="index.php" method="post">
-						  	<input type="hidden" name="action" value="INFOGROUPE"/></form> 
-						  	<a href='#' onclick='document.getElementById("menu_groupe").submit()'>mes groupes</a>
-
-						  	<form id="menu_notif" action="index.php" method="post">
-						  	<input type="hidden" name="action" value="NOTIFICATION"/></form> 
-						  	<a href='#' onclick='document.getElementById("menu_notif").submit()'>notifications</a>
-
-						  	<form id="menu_emploiDuTemps" action="index.php" method="post">
-						  	<input type="hidden" name="action" value="EMPLOIDUTEMPS"/></form> 
-						  	<a href='#' onclick='document.getElementById("menu_emploiDuTemps").submit()'>gérer emploi du temps</a>
-
-						  	<form id="menu_event" action="index.php" method="post">
-						  	<input type="hidden" name="action" value="EVENNEMENT"/></form> 
-						  	<a href='#' onclick='document.getElementById("menu_event").submit()'>évènnement à venir</a>
-
-						  	<form id="menu_deco" action="index.php" method="post">
-						  	<input type="hidden" name="action" value="SIGNOUT"/></form> 
-						  	<a href='#' onclick='document.getElementById("menu_deco").submit()'>déconnexion</a>
-						</div>
-					</li>
-				</ul>
-
-
+							</div>
+							</nav>
 			<?php
 				}
 	    	?>
 
-</header>
+<!-- Modals -->
 
-	<!-- MODAL Connexion-->
-	<div id="modalConnect" class="modal">
-		<!-- Modal content -->
-		<div class="modal-content">
-			<div class="modal-header">
-				<span class="close">&times;</span>
-				<h2>Authentification</h2>
-			</div>
-			<div class="modal-body">
-				<?php
-					include_once "sign-in.php";
-				?>
+	<!-- sign in Modal -->
+	<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+						<h5 for="close_button" class="modal-title col-sm-5" id="exampleModalLabel">Connectez-vous</h5>
+						<button type="button" id="close_button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<form method="POST" action=".">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for='id_login'>Identifiant</label>
+						<input type='text' class="form-control" name='login' id='id_login' required placeholder="Login ou mail"/>
+					</div>
+					<div class="form-group">
+						<label for='id_pwd'>Mot de passe</label>
+						<input type='password' class="form-control" name='pwd' id='id_pwd' required placeholder="Password"/>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
+					<!-- Envoi -->
+					<button type='submit' name='action' value='CONNEXION' class="btn btn-success">Connexion</button>
+				</div>
+			</form>
 			</div>
 		</div>
 	</div>
 
-	<!--MODAL Connexion-->
-	<div id="modalInscrip" class="modal">
-		<!-- Modal content -->
-		<div class="modal-content">
-			<div class="modal-header">
-				<span class="close">&times;</span>
-				<h2>Inscription</h2>
-			</div>
-			<div class="modal-body">
-				<?php
-					include_once "sign-up.php";
-				?>
+
+	<!-- sign up Modal -->
+	<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+						<h5 for="close_button" class="modal-title col-sm-5" id="exampleModalLabel">Connectez-vous</h5>
+						<button type="button" id="close_button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+				</div>
+				<form method="POST" action="." onsubmit="return verifEmail(this.mail);">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for='id_login'>Pseudo/Login<sup class='required'>*</sup></label>
+						<input type='text' class="form-control" name='login' id='id_login' required placeholder="Pseudo" />
+					</div>
+					<div class="form-group">
+						<label for='id_mail'>E-mail<sup class='required'>*</sup></label>
+						<input type='text' class="form-control" name='mail' id='id_mail' required placeholder="nomprenom@mail.com"/>
+					</div>
+					<div class="form-group">
+						<label for='id_pwd1'>Mot de passe<sup class='required'>*</sup></label>
+						<input type='password' class="form-control" name='pwd1' id='id_pwd1' required placeholder="Mot de passe"/>
+					</div>
+					<div class="form-group">
+						<label for='id_pwd2'>Confirmation du mot de passe<sup class='required'>*</sup></label>
+						<input type='password' class="form-control" name='pwd2' id='id_pwd2' required placeholder="Confirmation"/>
+					</div>
+					<p class='required'><sup>*</sup> Champs requis</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
+					<!-- Envoi -->
+					<button name='action' type='submit' value='CREER' class="btn btn-primary">Inscription</button>
+				</div>
+			</form>
 			</div>
 		</div>
 	</div>
-
-
-	<script>
-		// Get the modal
-		var modalco = document.getElementById('modalConnect');
-		var modalinscr = document.getElementById('modalInscrip');
-
-		// Get the button that opens the modal
-		var btnco = document.getElementById("btnConnect");
-		var btninscr = document.getElementById("btnInscrip");
-
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks the button, open the modal 
-		btnco.onclick = function() {
-		    modalco.style.display = "block";
-		}
-		btninscr.onclick = function() {
-		    modalinscr.style.display = "block";
-		}
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-		    modalco.style.display = "none";
-		}
-		span.onclick = function() {
-		    modalinscr.style.display = "none";
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-		    if (event.target == modalco) {
-		        modalco.style.display = "none";
-		    }
-		    if (event.target == modalinscr) {
-		    	modalinscr.style.display = "none";
-		    }
-		}
-	</script>
 
 <?php
 		include_once "$page.php";

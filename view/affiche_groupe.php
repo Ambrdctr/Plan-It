@@ -1,7 +1,6 @@
 <section>
 <?php
 	$groupe = $_POST["groupe"];
-	var_dump($groupe);
 	$array = getGroupe($groupe);
 	
 

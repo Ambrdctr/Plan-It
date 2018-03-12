@@ -4,17 +4,18 @@
 	include_once "model/bdd.php";
 	include_once "model/ajouts.php";
 	include_once "model/connexion.php";
+
 	include_once "model/suppressions.php";
 	include_once "model/recup_data.php";
-	//include_once "JSON/JSON_recup_events_agenda.php";
+
 	include_once "model/groupe.php";
-	session_start();
+
+
 
 	// Controller
 	include_once "controller/action.php";
-	
+
 	// View
-	include_once "view/afficher.php";
 	include_once "view/header.php";
+	include_once "view/afficher.php";
 	include_once "view/footer.php";
-	

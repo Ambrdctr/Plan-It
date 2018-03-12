@@ -42,7 +42,7 @@ function readData(oData) {
 			}
 			string += "</p>";
 
-			string += "<form method='POST' action='.'><input name='idValue' type='hidden' value='"+node.idEvent+"'/><button type='submit' class='btn btn-danger' name='action' value='DELETE_EVENT'><span class='fa fa-user' aria-hidden='true'></span>&nbsp;&nbsp;DELETE</button></form><br />";
+			string += "<form method='POST' action='.'><input name='idValue' type='hidden' value='"+node.idEvent+"'/><button type='submit' class='btn btn-danger' name='action' value='DELETE_EVENT'><span class='fa fa-trash' aria-hidden='true'></span>&nbsp;&nbsp;DELETE</button></form><br />";
 
 		}
 		document.getElementById("events").innerHTML = string;

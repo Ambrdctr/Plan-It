@@ -2,10 +2,41 @@
   margin: 0; padding: 0;
 }
 
+/* Custom bootstrap */
+
+.navbar {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.42;
+  border-radius: 15px;
+}
+
+.dropdown-toggle::after {
+    display:none
+}
+
+.dropdown-menu-right {
+    right: 0;
+    left: auto;
+}
+
 /* message d'erreur */
 
 .required {
-  color: red;
+  color: #888;
 }
 
 /*page d'accueil*/
@@ -83,14 +114,11 @@ header #connex_inscr {
 	display: flex;
 }
 
-header #logo {
-	width: 100px;
-	padding: 10px;
-	padding-left: 20px;
+#logo {
   filter: brightness(80%);
 }
 
-header #logo:hover {
+#logo:hover {
   filter: brightness(100%);
 }
 
@@ -118,7 +146,7 @@ footer {
 .button {
   display: inline-block;
   border-radius: 4px;
-  background-color: #00B400;
+  background-color: #00B466;
   border: none;
   color: #FFF;
   text-align: center;
@@ -130,6 +158,10 @@ footer {
   margin: 5px;
   margin-top: 10px;
   margin-right : 10px;
+}
+
+.blue {
+  background-color: #00B4FF;
 }
 
 .button_long {
@@ -152,6 +184,15 @@ footer {
   transition: 0.5s;
 }
 
+.button_down span:after {
+  content: '\25bc';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
 .button:hover {
 	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
@@ -165,138 +206,7 @@ footer {
   right: 0;
 }
 
+
 label {
   font-weight: normal;
 }
-
-/*MENU connecter sous pseudo*/
-.menuactif {
-  float:right;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-
-li {
-    float: left;
-
-}
-
-li a, .dropbtn {
-
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    
-}
-
-li a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
-}
-
-li.dropdown {
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right:0;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-
-
-/*MODALS (connexion/inscription)*/
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-    position: relative;
-    background-color: #fefefe;
-    margin: auto;
-    padding: 0;
-    border: 1px solid #888;
-    width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0} 
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-    color: white;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.modal-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
-
-.modal-body {padding: 2px 16px;}
-
-
-
-
-
-
-
