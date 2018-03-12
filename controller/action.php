@@ -52,7 +52,33 @@
 			} else {
 				$page = 'sign-in';
 			}	
+			}
 		}
+		if ($_POST["action"] == "INFOGROUPE") {
+			$page = 'info_groupe';
+		}
+		if ($_POST["action"] == "CHERCHER") {
+			$page = 'affiche_groupe';
+		
+		}
+		if ($_POST["action"] == "CREER LE GROUPE") {
+			if(newGroupe($_POST["nom"],$_POST["description"], $_SESSION['log'])) {
+				$page = 'home';
+			} else {
+				$page = 'info_groupe';
+			}
+		}
+
+		if ($_POST["action"] == "AJOUTER LA PERSONNE") {
+			if(addPersonne($_POST["nomPersonne"],$_POST["select"])) {
+				$page = 'home';
+			} else {
+				$page = 'info_groupe';
+			}
+		}
+		
+		
+
 		elseif ($_POST["action"] == "CREER") {
 			if(new_account($_POST["login"],$_POST["mail"],$_POST["pwd1"],$_POST["pwd2"])) {
 				$page = 'ajout_agenda';
