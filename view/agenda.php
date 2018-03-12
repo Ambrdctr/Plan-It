@@ -60,16 +60,6 @@
 	request(div);
 </script>
 
-
-<!--<script>
-	/* initialize modals */
-
-	$('#myModal').on('shown.bs.modal', function () {
-		$('#myInput').trigger('focus')
-	});
-
-</script>-->
-
 		</div>
 	</div>
 </div>

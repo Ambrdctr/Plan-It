@@ -6,7 +6,7 @@ function request(oSelect) {
 	var xhr   = getXMLHttpRequest();
 
 	document.getElementById("id_agenda").value = value;
-		
+
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			readData(xhr.response);
@@ -15,7 +15,7 @@ function request(oSelect) {
 			document.getElementById("loader").style.display = "inline";
 		}
 	};
-	
+
 	xhr.responseType = 'json';
 	xhr.open("GET", "./JSON/JSON_recup_events_agenda.php?IdAgenda=" + value, true);
 	xhr.setRequestHeader("Content-Type", "application/json");
@@ -39,10 +39,14 @@ function readData(oData) {
 				string += node.lieu + "<br />";
 			} else {
 				string += "Aucun lieu <br />";
-			} 
-			string += "</p><br />";
+			}
+			string += "</p>";
+
+			string += "<form method='POST' action='.'><input name='idValue' type='hidden' value='"+node.idEvent+"'/><button type='submit' class='btn btn-danger' name='action' value='DELETE_EVENT'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span>&nbsp;&nbsp;DELETE</button></form><br />";
+
 		}
 		document.getElementById("events").innerHTML = string;
+
 	} else {
 		document.getElementById("events").innerHTML = "aucun évènement";
 	}

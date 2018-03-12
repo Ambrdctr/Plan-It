@@ -2,12 +2,8 @@
 	function ajouter_event($event) {
 		$type = $event['type'];
 		$desc = $event['desc'];
-		$Ddebut = $event['Ddebut'];
-		$Dfin = $event['Dfin'];
-		$Hdebut = $event['Hdebut'];
-		$Hfin = $event['Hfin'];
-		$Ddebut .= " ".$Hdebut;
-		$Dfin .= " ".$Hfin;
+		$debutTime = $event['debutTime'];
+		$finTime = $event['finTime'];
 		$lieu = $event['lieu'];
 		$agenda = $event['agenda'];
 
@@ -23,13 +19,9 @@
 			$public = 0;
 		}
 
-		if ($Ddebut >= $Dfin) {
-			return false;
-		}
-
 		global $c;
-		$sql = "INSERT INTO evenement (nom, description, dateDebut, dateFin, lieu, prioritaire, public, agenda) 
-				values ('".$type."','".$desc."','".$Ddebut."','".$Dfin."','".$lieu."',".$prio.",".$public.",'".$agenda."')";
+		$sql = "INSERT INTO evenement (nom, description, dateDebut, dateFin, lieu, prioritaire, public, agenda)
+				values ('".$type."','".$desc."','".$debutTime."','".$finTime."','".$lieu."',".$prio.",".$public.",'".$agenda."')";
 		mysqli_query($c, $sql);
 		return true;
 	}
