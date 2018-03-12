@@ -3,6 +3,7 @@
 	include_once "model/bdd.php";
 	include_once "model/afficher.php";
 	include_once "model/connexion.php";
+	include_once "model/groupe.php";
 	session_start();
 
 	// Controller
