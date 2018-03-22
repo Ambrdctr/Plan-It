@@ -1,8 +1,9 @@
 ﻿<?php
 
+
 	/* Page d'acceuil */
 	if (isset($_SESSION['log'])) {
-		$page = 'agenda';
+		$page = 'mes_agendas';
 	} else {
 		$page = 'home';
 	}
@@ -50,9 +51,9 @@
 	/* Gestion des evenements */
 
 		/* Ajouter un evenement à un agenda */
-		if ($_POST["action"] == "AjouterEventGroupe") {
-			if (ajouter_event_groupe($_POST, $_POST['groupe_add_event'])) {
-				$page = 'info_groupe';
+		if ($_POST["action"] == "AjouterEvent") {
+			if (ajouter_event($_POST)) {
+				$page = 'agenda';
 			} else {
 				$_SESSION['error'] = "La date de début doit être antérieure à la date de fin";
 				$page = 'ajout_event';
@@ -87,29 +88,37 @@
 			$page = 'ajout_agenda';
 		}
 
-
-		/* Gestion des groupes */
+		/* Menu de navigation */
 
 		if ($_POST["action"] == "INFOGROUPE") {
 			$page = 'info_groupe';
 		}
-		if ($_POST["action"] == "PROFIL") {
-			$page = 'profil';
+
+		if ($_POST["action"] == "INFOAGENDA") {
+			$page = 'mes_agendas';
 		}
+
+		if ($_POST["action"] == "PLANNING") {
+			$page = 'agenda';
+		}
+
+		/* Gestion des groupes */
+
+
 		if ($_POST["action"] == "CHERCHER") {
 			$page = 'affiche_groupe';
 
 		}
-		if ($_POST["action"] == "Creer") {
-			if(newGroupe($_POST["groupe"],$_POST["description"], $_SESSION['log'])) {
+		if ($_POST["action"] == "CREER LE GROUPE") {
+			if(newGroupe($_POST["nom"],$_POST["description"], $_SESSION['log'])) {
 				$page = 'info_groupe';
 			} else {
 				$page = 'info_groupe';
 			}
 		}
 
-		if ($_POST["action"] == "Ajouter") {
-			if(addPersonne($_POST["nomPersonne"],$_POST["groupe_add"])) {
+		if ($_POST["action"] == "AJOUTER LA PERSONNE") {
+			if(addPersonne($_POST["nomPersonne"],$_POST["select"])) {
 				$page = 'info_groupe';
 			} else {
 				$page = 'info_groupe';
@@ -117,8 +126,8 @@
 
 		}
 
-		if ($_POST["action"] == "Supprimer") {
-			if(deletePersonne($_POST["selec_suppr"],$_POST["groupe_del"])) {
+		if ($_POST["action"] == "SUPPRIMER LA PERSONNE") {
+			if(deletePersonne($_POST["nomPers_suppr"],$_POST["selec_suppr"])) {
 				$page = 'info_groupe';
 			} else {
 				$page = 'info_groupe';

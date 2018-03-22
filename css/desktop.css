@@ -163,10 +163,6 @@ header #connex_inscr {
   filter: brightness(80%);
 }
 
-#logo:hover {
-  filter: brightness(100%);
-}
-
 /*footer*/
 
 footer {
