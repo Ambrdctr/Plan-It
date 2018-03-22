@@ -4,15 +4,19 @@
 
 <label for="id_select" class="rouge">Agenda courant</label>
 
-<select name="select" id="id_select" required autofocus onchange="ecrire(this.options[this.selectedIndex].innerHTML, 'id_titre'); request(this);">
+<div class="scrollbox">
 	<?php
 		$values = agendas_by_user($_SESSION['log']);
 		foreach ($values as $value) {
-			echo "<option value=".$value['idAgenda'].">".$value['titre']."</option>";
+			echo "<input type='checkbox' name='agenda_select' id='agenda_".$value['idAgenda']."' value='".$value['idAgenda']."'/><label for='agenda_".$value['idAgenda']."'>&nbsp;&nbsp;".$value['titre']."</label><br />";
 		}
 	?>
-</select>
+</div>
 
+
+<button type="button" name="button" id="select_all" class="btn btn-primary"><span class="fa fa-check-square-o"></span>&nbsp;&nbsp;Tout</button>
+
+<button type="button" name="button" id="deselect_all" class="btn btn-primary"><span class="fa fa-square-o"></span>&nbsp;&nbsp;Rien</button>
 
 <span id="loader" style="display: none;"><img src="./images/loader.gif" alt="loading" style="width: 30px; margin-bottom: -10px" /></span>
 
@@ -52,14 +56,18 @@
 			  </div>
 			</div>
 
-<div id="events">aucun event</div>
+<div id="events" class="container_test">aucun event</div>
 
 <script>
-	var div = document.getElementById('id_select');
+	/*var div = document.getElementById('id_select');
 	ecrire(div.options[div.selectedIndex].innerHTML, 'id_titre');
-	request(div);
+	request(div);*/
 </script>
 
 		</div>
 	</div>
 </div>
+
+<body>
+	
+<div style="display: block;" id='calendar'></div>

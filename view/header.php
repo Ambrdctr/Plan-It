@@ -5,28 +5,26 @@
 	<!-- Definition de l'encodage des characteres -->
 	<meta charset="UTF-8">
 
+	<!-- Responsive -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<!-- Titre de la page -->
 	<title>Plan'it!</title>
 
 	<!-- Ajouts des fiches de style -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap-datetimepicker.min.css" />
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="./css/style.css" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+	<link rel='stylesheet' href='./css/fullcalendar.min.css' />
+	<link rel='stylesheet' media='screen and (max-width: 360px)' href='./css/mobile.css' />
+	<link rel='stylesheet' media='screen and (min-width: 360px) and (max-width: 992px)' href='./css/tablet.css' />
+	<link rel='stylesheet' media='screen and (min-width: 992px)' href='./css/desktop.css' />
 
 	<!-- Ajouts du favicon -->
 	<link rel="icon" href="./images/favicon.ico" />
 </head>
 <body>
-	<!-- Ajout de la bibliothèque jQuery -->
-	<script type="text/javascript" src="./javascript/jquery-3.3.1.min.js"></script>
-	<!-- Popper -->
-	<script type="text/javascript" src="./javascript/popper.min.js"></script>
-	<!-- bootstrap -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-
-
 	    <!--<a href="."><img src="./images/logo.png" alt="Plan'it" id="logo"/></a>-->
 	    <?php
 				if (!isset($_SESSION["log"])) {
@@ -84,11 +82,23 @@
 										<button type="button" class="btn btn-secondary btn-circle"><span class='fa fa-user' aria-hidden='true'></span></button>
 										<?php echo $_SESSION['log']; ?>
 									</a>
-									<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+									<div class="dropdown-menu dropdown-menu-right-left" aria-labelledby="navbarDropdown">
+										<form method="post" action="." id="groupe">
+											<input type="hidden" name="action" value="INFOGROUPE">
+										</form>
+										<a class="dropdown-item" href="#" onclick="document.getElementById('groupe').submit();">Mes groupes&nbsp;&nbsp;<span class='fa fa-group' aria-hidden='true'></span></a>
+										<a class="dropdown-item" href="#">Action</a>
+										<a class="dropdown-item" href="#">Another action</a>
 										<a class="dropdown-item" href="#">Action</a>
 										<a class="dropdown-item" href="#">Another action</a>
 										<div class="dropdown-divider"></div>
-										<form method="post" action=".">
+										<form method="post" action="." id="profil">
+											<input type="hidden" name="action" value="PROFIL">
+										</form>
+										<a class="dropdown-item" href="#" onclick="document.getElementById('profil').submit();">Mon Profil</a>
+										<a class="dropdown-item bg-grey" href="#">Notification(s)&nbsp;&nbsp;<span class="badge badge-primary">0</span></a>
+										<div class="dropdown-divider"></div>
+										<form method="post" action="." class="text-center">
 											<button class="btn btn-danger" name='action' type='submit' value='SIGNOUT'><span>Deconnexion</span>&nbsp;&nbsp;<span class='fa fa-sign-out' aria-hidden='true'></span></button>
 										</form>
 									</div>
@@ -102,45 +112,12 @@
 
 <!-- Modals -->
 
-	<!-- sign in Modal -->
-	<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-						<h5 for="close_button" class="modal-title col-sm-5" id="exampleModalLabel">Connectez-vous</h5>
-						<button type="button" id="close_button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-				</div>
-				<form method="POST" action=".">
-				<div class="modal-body">
-					<div class="form-group">
-						<label for='id_login'>Identifiant</label>
-						<input type='text' class="form-control" name='login' id='id_login' required placeholder="Login ou mail"/>
-					</div>
-					<div class="form-group">
-						<label for='id_pwd'>Mot de passe</label>
-						<input type='password' class="form-control" name='pwd' id='id_pwd' required placeholder="Password"/>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-
-					<!-- Envoi -->
-					<button type='submit' name='action' value='CONNEXION' class="btn btn-success">Connexion</button>
-				</div>
-			</form>
-			</div>
-		</div>
-	</div>
-
-
 	<!-- sign up Modal -->
 	<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-						<h5 for="close_button" class="modal-title col-sm-5" id="exampleModalLabel">Connectez-vous</h5>
+						<h5 for="close_button" class="modal-title col-sm-5" id="exampleModalLabel">Inscrivez-vous</h5>
 						<button type="button" id="close_button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>

@@ -27,48 +27,31 @@
 
 	<!-- Champs de dates -->
 	<br />
+
 	<div class="container">
-		<div class='col-md-3'>
+		<div class='col-md-12'>
 				<div class="form-group">
 						<label for="startTime">Debut</label>
 						<div class='input-group date' id='datetimepicker1'>
-								<input type='text' class="form-control" name="debutTime" id="startTime" required/>
-								<span class="input-group-addon">
-										<span class="glyphicon glyphicon-calendar"></span>
-								</span>
+								<input type='text' class="form-control" name="debutTime" id="startTime" required readonly/>
+								<button type="button" class="btn btn-primary input-group-addon">
+										<span class="fa fa-calendar"></span>
+								</button>
 						</div>
 				</div>
 		</div>
-		<div class='col-md-3'>
+		<div class='col-md-12'>
 				<div class="form-group">
 						<label for="endTime">Fin</label>
 						<div class='input-group date' id='datetimepicker2'>
-								<input type='text' class="form-control" name="finTime" id="endTime" required/>
-								<span class="input-group-addon">
-										<span class="glyphicon glyphicon-calendar"></span>
-								</span>
+								<input type='text' class="form-control" name="finTime" id="endTime" required readonly/>
+								<button type="button" class="btn btn-primary input-group-addon">
+										<span class="fa fa-calendar"></span>
+								</button>
 						</div>
 				</div>
 		</div>
 </div>
-<script type="text/javascript">
-		$(function () {
-				$('#datetimepicker1').datetimepicker({
-						format: 'YYYY-MM-DD HH:mm'
-				});
-				$('#datetimepicker2').datetimepicker({
-						format: 'YYYY-MM-DD HH:mm',
-						useCurrent: false //Important! See issue #1075
-				});
-				$("#datetimepicker1").on("dp.change", function (e) {
-						$('#datetimepicker2').data("DateTimePicker").minDate(e.date);
-				});
-				$("#datetimepicker2").on("dp.change", function (e) {
-						$('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
-				});
-
-		});
-</script>
 
 
 	<!-- Lieu -->

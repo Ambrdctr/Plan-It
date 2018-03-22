@@ -29,8 +29,8 @@
 }
 
 .dropdown-menu-right {
-    right: 0;
-    left: auto;
+    right: auto;
+    left: 0;
 }
 
 /* message d'erreur */
@@ -40,6 +40,20 @@
 }
 
 /*page d'accueil*/
+
+div.image_resp {
+  display: none
+}
+
+div.image_text_resp {
+  display: inline-flex;
+  margin: auto;
+  margin-bottom: 50px;
+  width: 300px;
+  height: 124px;
+  background-image: url('../images/logox300.png');
+  background-repeat: no-repeat;
+}
 
 #div_logo {
   text-align: center;
@@ -62,7 +76,6 @@
 
 .description {
   text-align: center;
-  width: 1000px;
   margin: auto;
   margin-top: 50px;
   color: #ddf;
@@ -125,10 +138,10 @@ header #connex_inscr {
 /*footer*/
 
 footer {
-  letter-spacing: 100px;
+  letter-spacing: 10px;
   font-size: 0.8em;
   text-align: center;
-  padding: 50px;
+  padding: 10px;
   background-color: #ddd;
 }
 
