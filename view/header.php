@@ -25,8 +25,6 @@
 	<link rel="icon" href="./images/favicon.ico" />
 </head>
 <body>
-
-
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 					<a class="navbar-brand" href="." id="logo_A">
 				    <img src="./images/logo_P.png" width="30" height="30" class="d-inline-block align-top" alt="P">

@@ -11,12 +11,19 @@ $data = [];
 if (isset($datas)) {
   foreach ($datas as $id) {
       $id = intval($id);
-    	global $c;
-    	$sql = "SELECT * FROM evenement WHERE agenda = $id";
-    	$result = mysqli_query($c, $sql);
-    	while ($row = mysqli_fetch_assoc($result)) {
-    		$row['dateDebut'][10] = "T";
+      global $c;
+      $sql = "SELECT * FROM evenement WHERE agenda = $id";
+      $result = mysqli_query($c, $sql);
+      while ($row = mysqli_fetch_assoc($result)) {
+        $row['dateDebut'][10] = "T";
             $row['dateFin'][10] = "T";
+
+            $desc = $row['description'];
+            unset($row['description']);
+            if ($desc == '') {
+              $desc = 'Aucune description';
+            }
+            $row['description'] = $desc;
 
             $row['title'] = $row['nom'];
             unset($row['nom']);
@@ -27,7 +34,7 @@ if (isset($datas)) {
             $row['end'] = $row['dateFin'];
             unset($row['dateFin']);
             $data[] = $row;
-    	}
+      }
     }
 }
 echo json_encode($data);

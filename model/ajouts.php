@@ -23,6 +23,53 @@
 		$sql = "INSERT INTO evenement (nom, description, dateDebut, dateFin, lieu, prioritaire, public, agenda)
 				values ('".$type."','".$desc."','".$debutTime."','".$finTime."','".$lieu."',".$prio.",".$public.",'".$agenda."')";
 		mysqli_query($c, $sql);
+
+		return true;
+	}
+
+
+
+	function ajouter_event_groupe($event, $groupe) {
+		# Récuperation des valeurs du formulaire
+		$type = $event['type'];
+		$desc = $event['desc'];
+		$debutTime = $event['debutTime'];
+		$finTime = $event['finTime'];
+		$lieu = $event['lieu'];
+		var_dump($type);
+		var_dump($desc);
+		var_dump($groupe);
+
+		# Si l'évennement est prioritaire
+		if (isset($event['prio'])) {
+			$prio = 1;
+		} else {
+			$prio = 0;
+		}
+
+		# Si l'évennement est public
+		if (isset($event['public'])) {
+			$public = 1;
+		} else {
+			$public = 0;
+		}
+
+		# base de donnée
+		global $c;
+		$sql = "INSERT INTO evenement (nom, description, dateDebut, dateFin, lieu, prioritaire, public) # Agenda ?
+				values ('".$type."','".$desc."','".$debutTime."','".$finTime."','".$lieu."',".$prio.",".$public."')";
+		mysqli_query($c, $sql);
+
+
+		# Lien avec le groupe
+		$id = mysqli_insert_id($c);
+
+
+		global $c;
+		$sql = "INSERT INTO evenement_groupe (id_evenement, groupe)
+				values ('".$id."','".$groupe."')";
+		mysqli_query($c, $sql);
+
 		return true;
 	}
 

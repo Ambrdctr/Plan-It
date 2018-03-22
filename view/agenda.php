@@ -1,6 +1,3 @@
-<script type="text/javascript" src="./javascript/script.js"></script>
-
-
 <label for="id_select" class="rouge">Agenda courant</label>
 
 <div class="scrollbox">
