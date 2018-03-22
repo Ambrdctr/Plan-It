@@ -17,6 +17,7 @@
 			$public = 1;
 		} else {
 			$public = 0;
+<<<<<<< HEAD
 		}
 
 		global $c;
@@ -74,6 +75,17 @@
 	}
 
 
+=======
+		}
+
+		global $c;
+		$sql = "INSERT INTO evenement (nom, description, dateDebut, dateFin, lieu, prioritaire, public, agenda)
+				values ('".$type."','".$desc."','".$debutTime."','".$finTime."','".$lieu."',".$prio.",".$public.",'".$agenda."')";
+		mysqli_query($c, $sql);
+		return true;
+	}
+
+>>>>>>> raphael
 	function ajouter_agenda($titre) {
 		global $c;
 		$user = $_SESSION['log'];

@@ -38,4 +38,8 @@ function agenda_by_name_user($name, $user) {
 	$sql = "SELECT * FROM agenda WHERE titre = '".$name."' AND user = '".$user."'";
 	$result = mysqli_query($c, $sql);
 	return mysqli_fetch_assoc($result);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> raphael

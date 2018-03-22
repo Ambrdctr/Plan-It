@@ -126,6 +126,7 @@ function deletePersonne($nomPers,$nomGr){
 
 		
 
+<<<<<<< HEAD
 }
 
 function groupes_user($user) {
@@ -206,4 +207,6 @@ function user_by_groupes($groupe) {
 
 	//retour du tableau
 	return $tres;
+=======
+>>>>>>> raphael
 }

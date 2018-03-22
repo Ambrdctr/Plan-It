@@ -63,3 +63,15 @@ function verifAddAgendaForm(f) {
 function ecrire(text, id) {
 	document.getElementById(id).innerHTML = text;
 }
+<<<<<<< HEAD
+=======
+
+function changeValue(text, id) {
+	document.getElementById(id).value = text;
+}
+
+function cacher(id) {
+	document.getElementById(id).style.display = "none";
+
+}
+>>>>>>> raphael
