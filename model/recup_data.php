@@ -24,6 +24,8 @@ function agendas_by_user($user) {
 }
 
 
+
+
 function first_agenda($user) {
 	global $c;
 

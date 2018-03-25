@@ -60,7 +60,23 @@
 
 			}
 
+
+
+
+
+
+
 			$(function () {
+
+			function check(array){ 
+			// var checked_arr = []; //tableau qui contiendra des entiers
+			$('input[name=agenda_select]').each(function () { //lors de la sélection d'un agenda
+				if ($(this).prop("checked")) { //si il y a sélection
+					array.push($(this).val()); //on ajoute au tableau l'id de l'agenda selectionné
+				}
+			});
+
+			};
 
 					function recup_events(checked_arr) {
 					$.post(
@@ -74,8 +90,8 @@
 
 					function fonction_retour(datas){
 						$('#calendar').fullCalendar('removeEvents');
-			      $('#calendar').fullCalendar('addEventSource', datas);
-			      $('#calendar').fullCalendar('rerenderEvents' );
+			      		$('#calendar').fullCalendar('addEventSource', datas);
+			      		$('#calendar').fullCalendar('rerenderEvents' );
 					}
 				}
 
@@ -102,7 +118,11 @@
 
 			});
 
+
+
 			$(document).ready(function() {
+
+
 
 				var checked_arr = [];
 
@@ -112,12 +132,10 @@
 							$(this).prop("checked", true);
 						}
 					});
+	
 					var checked_arr = [];
-					$('input[name=agenda_select]').each(function () {
-						if ($(this).prop("checked")) {
-							checked_arr.push($(this).val());
-						}
-					});
+
+					check(checked_arr);
 					recup_events(checked_arr);
 				});
 
@@ -128,92 +146,85 @@
 						}
 					});
 					var checked_arr = [];
-					$('input[name=agenda_select]').each(function () {
-						if ($(this).prop("checked")) {
-							checked_arr.push($(this).val());
-						}
-					});
+
+					check(checked_arr);
 					recup_events(checked_arr);
 				});
 
         		$('input[name=agenda_select]').click(function() {
         			var checked_arr = [];
-					$('input[name=agenda_select]').each(function () {
-						if ($(this).prop("checked")) {
-							checked_arr.push($(this).val());
-						}
-					});
+
+					check(checked_arr);
 					recup_events(checked_arr);
 				});
 
-							// page is now ready, initialize the calendar...
-			  			$('#calendar').fullCalendar({
-					    // put your options and callbacks here
-					     themeSystem: 'bootstrap4',
+			  			$('#calendar').fullCalendar({ //Initialisation du calendrier
+
+					     themeSystem: 'bootstrap4', //Theme fullcalendar
 					    		header: {
-					        	left: "prev,next today",
-					        	center: 'title',
-					        	right: 'month,agendaWeek,agendaDay,listWeek'
+					        	left: "prev,next today", //Boutons à gauche du calendrier
+					        	center: 'title', //titre du calendrier = Mois actuel
+					        	right: 'month,agendaWeek,agendaDay,listWeek' //Boutons permettant de changer la vue
 
 					      	},
-						    dayClick: function(date, jsEvent, view) {
-								var clickDate = date.format('YYYY-MM-DD hh:mm:ss');
-								$('#start').val(clickDate);//dans la zone de formulaire 'debut' on choisis la date sur la quelle on cliqué
-								$('#end').val(clickDate);//dans la zone de formulaire 'debut' on choisis la date sur la quelle on cliqué
-								$('#exampleModal').modal('show');
-								},
 
-					      	editable: true,
+
+					      	editable: true, 
+					      	// cache: true,
+					      	// contentHeight: "auto",
+					      	businessHours: true, // display business hours
 					      	eventLimit: true, // allow "more" link when too many events
+					      	displayEventEnd: true,
 					      	displayEventTime: true,
-					        events: {
-							    url: './JSON/recup_events.php',
-							    type: 'POST',
-							    data: {
-							      checked: checked_arr
+					        events: { 					//evenements ajoutés dans le calendrier
+							    url: './JSON/recup_events.php',		//URL du fichier où sont enregistrés les informations des évènements
+							    type: 'POST', //Type de la requete
+							    data: { 
+							      checked: checked_arr //Récupère le tableau contenant les id des differents agenda
 							    },
-							    error: function() {
-							      alert('there was an error while fetching events!');
+							    error: function() { 
+							      alert("Problème lors de l'ajout d'évènement");
 							    },
-							    color: 'yellow',   // a non-ajax option
-							    textColor: 'black' // a non-ajax option
+
 							},
+
+							 windowResize: function(view) {
+							  },
 
 					      	navLinks: true, // can click day/week names to navigate views
-					        selectable: true,
+					        selectable: true, //permet de sélectionner des cellules du calendrier
 					        selectHelper: true,
-					        formatDate: 'yyyy-MM-dd HH:mm',
-					        weekNumbers: true,
-					        // firstHour: 8,
+					        formatDate: 'yyyy-MM-dd HH:mm', //format par défaut de la date
+					        weekNumbers: true, //permet de cliquer sur un jour de la semaine pour voir en détail la liste d'event
 
-							select: function(start, end) {
-								var eventData;
-								$('#exampleModal').modal('show');
-								$('#datetimepicker1').data("DateTimePicker").date(start);
-								$('#datetimepicker2').data("DateTimePicker").date(end);
-								eventData = {
-									title : 'Nom',
-									start : start,
-									end : end,
-								};
-								$('#calendar').fullCalendar('renderEvent', eventData, true);
-
-
-							$('#calendar').fullCalendar('unselect');
+							select: function(start, end) { //fonction permettant de selectionner une ou plusieurs cellules du calendrier en recuperant la date de debut et la date de fin de la période selectionnée
+							
+								$('#addOnModal').modal('show'); //appel du modal
+								$('#datetimepicker1').data("DateTimePicker").date(start); //on entre la date 'start' en valeur prédéfinie dans le modal
+								$('#datetimepicker2').data("DateTimePicker").date(end); //on entre la date 'end' en valeur prédéfinie dans le modal
+					
 							},
 
 
 
 
-							eventRender: function(eventObj, $el) {
+							eventRender: function(eventObj, $el) { //fonction permettant de voir le détail d'un event lorsqu'on passe le curseur dessus
 						        $el.popover({
-						          title: eventObj.title,
-						          content: eventObj.description ? eventObj.description : '',
-						          trigger: 'hover',
-						          placement: 'right',
-						          container: 'body'
+						          title: eventObj.title, //Nom de l'event
+						          content: eventObj.description ? eventObj.description : '', //Description de l'event, chaine vide si nulle
+						          trigger: 'hover', //déclencher lors du passage sur un event
+						          placement: 'right', //le popover apparait à droite de l'event
+						          container: 'body' 
 						        });
 						    },
+
+						    // eventDrop: function (event, delta, revertFunc) {
+          //      					 if (!confirm(event.title + " est déplacé le : " + event.start.format() + " Acceptez vous ce changement? ")) {
+          //          						 revertFunc();
+          //      					 } else {
+
+          //       					}
+          //  					 }
 
 							})
 
