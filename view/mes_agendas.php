@@ -2,12 +2,53 @@
 
 <div class="btn-group-vertical">
 	<?php
-		$values = agendas_by_user($_SESSION['log']);
-		foreach ($values as $value) {?>
+		$agenda_prive = agenda_by_user($_SESSION['log']);
+    $agenda_admin = agendas_by_groupe_admin($_SESSION['log']);
+    $agenda_nonAdmin = agendas_by_groupe_nonAdmin($_SESSION['log']);
+
+    ?>
+    <div class="btn-group dropright" role="group">
+
+          <button  <?php echo "id='agenda_".$agenda_prive['idAgenda']."'"; ?> type="button" class="btn btn-light dropdown-toggle text-left" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class='fa fa-user'></i> &nbsp; <i class='fa fa-unlock'></i> &nbsp; <?php echo $agenda_prive['titre']; ?>
+          </button>
+        	<div class="dropdown-menu" <?php echo "aria-labelledby='agenda_".$agenda_prive['idAgenda']."'"; ?>>
+              <ul class="pagination pagination-lg">
+                <li class="page-item" data-toggle="popover" data-placement="bottom" data-content="Ajouter un évenement dans cet agenda">
+                  <a class="page-link" onclick="addOn_selected(<?php echo $agenda_prive['idAgenda']; ?>);" data-toggle="modal" data-target="#addOnModal">
+                    <span class="fa fa-calendar-plus-o text-success"></span>
+                  </a>
+                </li>
+                <li class="page-item" data-toggle="popover" data-placement="bottom" data-content="Effacer un évenement dans cet agenda">
+                  <a class="page-link" onclick="deleteOn_selected(<?php echo $agenda_prive['idAgenda']; ?>);
+                                                ecrire('<?php echo $agenda_prive['titre']; ?>', 'agenda_choisi');
+                                                changeValue('<?php echo $agenda_prive['idAgenda']; ?>', 'id_deleteOn');
+                                                cacher('search_list');
+                                                " data-toggle="modal" data-target="#deleteOnModal">
+                    <span class="fa fa-calendar-minus-o text-dark"></span>
+                  </a>
+                </li>
+                <li class="page-item" data-toggle="popover" data-placement="bottom" data-content="Modifier cet agenda">
+                  <a class="page-link" onclick="delete_selected(<?php echo $agenda_prive['idAgenda']; ?>);" data-toggle="modal" data-target="#deleteModal">
+                    <span class="fa fa-wrench text-primary"></span>
+                  </a>
+                </li>
+              </ul>
+              <div class="dropdown-divider"></div>
+                <p>Votre agenda personnel </p>
+        </div>
+      </div>
+
+
+
+    <?php
+    //Agenda admin
+		foreach ($agenda_admin as $value) {?>
       <div class="btn-group dropright" role="group">
-        <button  <?php echo "id='agenda_".$value['idAgenda']."'"; ?> type="button" class="btn btn-light dropdown-toggle text-left" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <?php echo $value['titre']; ?>
-        </button>
+
+          <button  <?php echo "id='agenda_".$value['idAgenda']."'"; ?> type="button" class="btn btn-light dropdown-toggle text-left" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class='fa fa-group'></i> &nbsp; <i class='fa fa-unlock'></i> &nbsp; <?php echo $value['titre'];?>
+          </button>
         <div class="dropdown-menu" <?php echo "aria-labelledby='agenda_".$value['idAgenda']."'"; ?>>
               <ul class="pagination pagination-lg">
                 <li class="page-item" data-toggle="popover" data-placement="bottom" data-content="Ajouter un évenement dans cet agenda">
@@ -24,24 +65,39 @@
 										<span class="fa fa-calendar-minus-o text-dark"></span>
 									</a>
 								</li>
-                <li class="page-item" data-toggle="popover" data-placement="bottom" data-content="Supprimer cet agenda">
+                <li class="page-item" data-toggle="popover" data-placement="bottom" data-content="Modifier cet agenda">
 									<a class="page-link" onclick="delete_selected(<?php echo $value['idAgenda']; ?>);" data-toggle="modal" data-target="#deleteModal">
-										<span class="fa fa-calendar-times-o text-danger"></span>
+										<span class="fa fa-wrench text-primary"></span>
 									</a>
 								</li>
               </ul>
+              <div class="dropdown-divider"></div>
+                <p>Agenda du groupe : <b><?php echo get_groupe_by_agenda($value['idAgenda'])['nom']; ?></b> </p>
+                <p>Administrateur du groupe : <b><?php echo get_groupe_by_agenda($value['idAgenda'])['administrateur']; ?></b> </p>
         </div>
       </div><?php
     }
-	?>
+
+
+
+    //Agenda non admin
+    foreach ($agenda_nonAdmin as $value) {?>
+      <div class="btn-group dropright" role="group">
+
+          <button  <?php echo "id='agenda_".$value['idAgenda']."'"; ?> type="button" class="btn btn-light dropdown-toggle text-left" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class='fa fa-group'></i> &nbsp; <i class='fa fa-lock'></i> &nbsp; <?php echo $value['titre']; ?>
+          </button>
+        <div class="dropdown-menu" <?php echo "aria-labelledby='agenda_".$value['idAgenda']."'"; ?>>
+
+
+                <p>Agenda du groupe : <b><?php echo get_groupe_by_agenda($value['idAgenda'])['nom']; ?></b> </p>
+                <div class="dropdown-divider"></div>
+                <p>Administrateur du groupe : <b><?php echo get_groupe_by_agenda($value['idAgenda'])['administrateur']; ?></b> </p>
+        </div>
+      </div><?php
+    }
+  ?>
 </div>
-
-<form method="POST" action=".">
-	<button type="submit" value="newAgenda" class="button" name="action" ><span>Nouvel agenda </span></button>
-</form>
-
-
-
 
 <!-- 																																						Modal ajout -->
 
@@ -62,7 +118,64 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <!-- Envoi -->
         <input type="hidden" name="agenda" id="id_addOn" value="">
-        <button type="submit" class="btn btn-success" name="action" value="AjouterEvent">Ajouter</button>
+				<input type="hidden" name="action" value="AjouterEvent">
+
+	      <button type="button" class="btn btn-success" onclick="superposition();">Ajouter</button>
+				<!-- Dropdown menu de superposition -->
+					<div class="dropdown dropleft" id="superposition_dropdown">
+						  <div class="dropdown-menu" id="superposition_dropdown-menu">
+								<p class="dropdown-item">Votre évènement : <strong id="drop_nom_agenda"></strong><br/>
+								Se superpose avec <span id="superposition_nb" class="badge badge-danger"></span> autres evenements</p>
+						    <div class="dropdown-item" id="superposition_detail"></div>
+						    <div class="text-center">
+									<button type="button" class="btn btn-primary" onclick="optimale_dropdown();">Date optimale</button>
+									<div class="dropdown" id="optimale_dropdown">
+											<div class="dropdown-menu" id="optimale_dropdown-menu">
+												<p class="dropdown-item">Choisissez une plage horaire</p>
+												<div class="dropdown-divider"></div>
+												<div class="container dropdown-item">
+													<div class="row">
+														<div class="col-md-3">
+															00:00
+														</div>
+														<div class="col-md-6">
+															<p id="temps" class="text-primary"></p>
+														</div>
+														<div class="col-md-3">
+															00:00
+														</div>
+													</div>
+												</div>
+												<div class="container-fluid">
+													<div class="row">
+														<div class="col-lg-12">
+																<div class="dropdown-item text-center" id="slider-range"></div>
+														</div>
+													</div>
+												</div>
+												<div class="dropdown-divider"></div>
+												<div class="text-center">
+													<button type="button" class="btn btn-primary" id="ajouter_horaire">Ajouter</button>
+													<button type="button" class="btn btn-success" id="valider_horaire">Trouver une date</button>
+												</div>
+												<div class="dropdown-divider"></div>
+												<div class="container-fluid">
+													<div class="dropdown-item" id="horaires"></div>
+												</div>
+
+
+
+											</div>
+									</div>
+									<button type="button" class="btn btn-secondary">Ignorer</button>
+									<button type="button" class="btn btn-secondary">Autre date</button>
+								</div>
+						</div>
+					</div>
+		 </div>
+
+
+
       </div>
     </form> <!-- fin du formulaire d'ajout d'event -->
     </div>

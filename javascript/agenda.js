@@ -15,15 +15,15 @@ $(function () {
         sideBySide: true,
         ignoreReadonly: true,
         date: moment().add('hours', 1),
-        minDate: moment(),
+        minDate: moment().add('minutes', 1),
         useCurrent: false //Important! See issue #1075
     });
 
     $("#datetimepicker1").on("dp.change", function (e) {
       if ($('#datetimepicker2').data("DateTimePicker").date() < $('#datetimepicker1').data("DateTimePicker").date()) {
-        $('#datetimepicker2').data("DateTimePicker").date(e.date.add('hours', 1));
+        $('#datetimepicker2').data("DateTimePicker").date($('#datetimepicker1').data("DateTimePicker").date().add('hours', 1));
       }
-      $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+      $('#datetimepicker2').data("DateTimePicker").minDate(e.date.add('minutes', 1));
     });
 
 

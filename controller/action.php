@@ -1,9 +1,5 @@
 ﻿<?php
 
-<<<<<<< HEAD
-=======
-
->>>>>>> raphael
 	/* Page d'acceuil */
 	if (isset($_SESSION['log'])) {
 		$page = 'mes_agendas';
@@ -35,8 +31,6 @@
 		if ($_POST["action"] == "CONNEXION") {
 			if(log_in($_POST["login"],$_POST["pwd"])) {
 				$_SESSION['agenda'] = first_agenda($_SESSION['log']);
-<<<<<<< HEAD
-=======
 				$page = 'agenda';
 			} else {
 				$page = 'home';
@@ -44,9 +38,9 @@
 		}
 
 		/* Inscription */
-		elseif ($_POST["action"] == "CREER") {
-			if(new_account($_POST["login"],$_POST["mail"],$_POST["pwd1"],$_POST["pwd2"])) {
-				$page = 'ajout_agenda';
+		elseif ($_POST["action"] == "CREER_compte") {
+			if(new_account($_POST["login"],$_POST["mail"],$_POST["pwd1"],$_POST["pwd2"],$_POST['nom_agenda'])) {
+				$page = 'agenda';
 			} else {
 				$page = 'home';
 			}
@@ -57,8 +51,8 @@
 
 		/* Ajouter un evenement à un agenda */
 		if ($_POST["action"] == "AjouterEvent") {
+			
 			if (ajouter_event($_POST)) {
->>>>>>> raphael
 				$page = 'agenda';
 			} else {
 				$page = 'home';
@@ -115,21 +109,21 @@
 			$page = 'ajout_agenda';
 		}
 
-<<<<<<< HEAD
 
-		/* Gestion des groupes */
-=======
 		/* Menu de navigation */
->>>>>>> raphael
 
 		if ($_POST["action"] == "INFOGROUPE") {
 			$page = 'info_groupe';
 		}
-<<<<<<< HEAD
+
+		if ($_POST["action"] == "NOTIF_FIN") {
+			delete_notification($_POST["notif"]);
+			$page = 'info_groupe';
+		}
+
 		if ($_POST["action"] == "PROFIL") {
 			$page = 'profil';
 		}
-=======
 
 		if ($_POST["action"] == "INFOAGENDA") {
 			$page = 'mes_agendas';
@@ -139,17 +133,19 @@
 			$page = 'agenda';
 		}
 
+		if ($_POST["action"] == "NOTIFICATION") {
+			$page = 'affiche_notification';
+		}
+
 		/* Gestion des groupes */
 
-
->>>>>>> raphael
 		if ($_POST["action"] == "CHERCHER") {
 			$page = 'affiche_groupe';
 
 		}
-<<<<<<< HEAD
+
 		if ($_POST["action"] == "Creer") {
-			if(newGroupe($_POST["groupe"],$_POST["description"], $_SESSION['log'])) {
+			if(newGroupe($_POST["groupe"],$_POST["description"], $_SESSION['log'], $_POST['nom_agenda'])) {
 				$page = 'info_groupe';
 			} else {
 				$page = 'info_groupe';
@@ -161,7 +157,9 @@
 				$page = 'info_groupe';
 			} else {
 				$page = 'info_groupe';
-=======
+			}
+		}
+
 		if ($_POST["action"] == "CREER LE GROUPE") {
 			if(newGroupe($_POST["nom"],$_POST["description"], $_SESSION['log'])) {
 				$page = 'info_groupe';
@@ -175,24 +173,48 @@
 				$page = 'info_groupe';
 			} else {
 				$page = 'info_groupe';
->>>>>>> raphael
 			}
 
 		}
 
-<<<<<<< HEAD
 		if ($_POST["action"] == "Supprimer") {
 			if(deletePersonne($_POST["selec_suppr"],$_POST["groupe_del"])) {
-=======
-		if ($_POST["action"] == "SUPPRIMER LA PERSONNE") {
-			if(deletePersonne($_POST["nomPers_suppr"],$_POST["selec_suppr"])) {
->>>>>>> raphael
 				$page = 'info_groupe';
 			} else {
 				$page = 'info_groupe';
 			}
 
 		}
+
+		/* modif mail et mdp */
+		if ($_POST["action"] == "modif_mdp") {
+			if(modif_mdp($_POST["mdp"],$_POST["nvMdp"],$_POST["confMdp"])) {
+				$page = 'profil';
+			} else {
+				$page = 'profil';
+			}
+
+		}
+
+		if ($_POST["action"] == "modif_mail") {
+			if(modif_mail($_POST["mail"],$_POST["nvMail"],$_POST["confMail"])) {
+				$page = 'profil';
+			} else {
+				$page = 'profil';
+			}
+
+		}
+
+		if ($_POST["action"] == "ajout_photo") {
+			if(ajout_image($_POST["url_photo"])) {
+				$page = 'profil';
+			} else {
+
+				$page = 'profil';
+			}
+
+		}
+
 
 	}
 

@@ -1,7 +1,7 @@
 <?php
 function getGroupe($groupe) {
 	global $c;
-	
+
 	$sql = "select * from utilisateur u JOIN utilisateur_groupe g ON u.login=g.utilisateur WHERE g.groupe='$groupe'";
 	$result = mysqli_query($c,$sql);
 
@@ -16,16 +16,17 @@ function getGroupe($groupe) {
 	return $array;
 }
 
-function newGroupe($nom,$description,$user){
+function newGroupe($nom,$description,$user,$agenda){
 	global $c;
+
 	$groupfree = true;
 
-		
+
 		//$sql = "select * from utilisateur_groupe ug JOIN groupe g ON g.nom = ug.groupe WHERE g.nom='$nom'";
-		$sql = "SELECT * FROM utilisateur_groupe";
+		$sql = "SELECT * FROM groupe";
 		$result = mysqli_query($c, $sql);
 		while($row = mysqli_fetch_assoc($result)) {
-			if (strtolower($row['groupe']) == strtolower($nom)) {
+			if (strtolower($row['nom']) == strtolower($nom)) {
 				$groupfree = false;
 				break;
 			}
@@ -33,23 +34,30 @@ function newGroupe($nom,$description,$user){
 
 
 		if ($groupfree)  {
-				$sql = "INSERT INTO groupe (nom,description,administrateur) 
-				VALUES ('".$nom."',
-						'".$description."',
-						'".$user."')";
+			//creation de l'agenda
+			ajouter_agenda($agenda);
+			//recup de l'ID
+			$id = mysqli_insert_id($c);
 
-				mysqli_query($c, $sql);
+			$sql = "INSERT INTO groupe (nom,description,administrateur,id_agenda)
+			VALUES ('".$nom."',
+					'".$description."',
+					'".$user."',
+					'".$id."')";
 
-				$sql = "INSERT INTO utilisateur_groupe (utilisateur,groupe) 
-				VALUES ('".$user."',
-						'".$nom."')";
+			mysqli_query($c, $sql);
 
-				mysqli_query($c, $sql);
+			$sql = "INSERT INTO utilisateur_groupe (utilisateur,groupe)
+			VALUES ('".$user."',
+					'".$nom."')";
+
+			mysqli_query($c, $sql);
+
 		}
 		else {
 			$_SESSION["error"] = "Vous avez déjà utilisé ce nom de groupe !";
 		}
-	return $groupfree;	
+	return $groupfree;
 }
 
 
@@ -79,7 +87,7 @@ function addPersonne($nomPersonne,$nomGroupe){
 		global $c;
 		$free1 = true;
 		$free2 = false;
-		
+
 		$sql = "SELECT * FROM utilisateur_groupe WHERE groupe='$nomGroupe'";
 		$result = mysqli_query($c, $sql);
 		while($row = mysqli_fetch_assoc($result)){
@@ -98,13 +106,16 @@ function addPersonne($nomPersonne,$nomGroupe){
 			}
 		}
 
+		$notif = true;
 		if ($free1 && $free2){
-			$sql = "INSERT INTO utilisateur_groupe (utilisateur,groupe) 
+			$sql = "INSERT INTO utilisateur_groupe (utilisateur,groupe)
 				values ('".$nomPersonne."',
 						'".$nomGroupe."')";
 
 			$result = mysqli_query($c, $sql);
-					
+
+			add_notification($nomPersonne,$nomGroupe);
+
 
 
 		}
@@ -113,20 +124,15 @@ function addPersonne($nomPersonne,$nomGroupe){
 
 function deletePersonne($nomPers,$nomGr){
 		global $c;
-		
-		
-		
 
-		
+
+
+
+
 
 			$sql = "DELETE FROM utilisateur_groupe WHERE utilisateur='$nomPers'";
 			$result = mysqli_query($c, $sql);
 					
-
-
-		
-
-<<<<<<< HEAD
 }
 
 function groupes_user($user) {
@@ -175,7 +181,7 @@ function all_groupe_user($user) {
 function get_desc_group($groupe) {
 	//recupération de la connexion a la bdd
 	global $c;
-	
+
 	$sql = "SELECT description FROM groupe WHERE nom='$groupe'";
 
 	//recuperation des elements recuperes
@@ -207,6 +213,28 @@ function user_by_groupes($groupe) {
 
 	//retour du tableau
 	return $tres;
-=======
->>>>>>> raphael
+
 }
+
+
+
+function get_agenda_by_groupe($groupe) {
+	//recupération de la connexion a la bdd
+	global $c;
+	//tous les groupes où l'utilisateur est l'administrateur
+	$sql = "SELECT titre FROM agenda a JOIN groupe g on g.id_agenda = a.idAgenda WHERE g.nom='$groupe'";
+
+	//recuperation des elements recuperes
+	$result = mysqli_query($c, $sql);
+
+	//creation du tableau qui contiendra les noms des membres
+	$nomAgenda =  mysqli_fetch_assoc($result);
+
+	
+
+	//retour du tableau
+	return $nomAgenda['titre'];
+}
+
+
+
