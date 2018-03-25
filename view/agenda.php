@@ -4,6 +4,7 @@
 	<?php
 		$values = all_agenda_by_user($_SESSION['log']);
 		foreach ($values as $value) {
+			
 			echo "<input type='checkbox' name='agenda_select' id='agenda_".$value['idAgenda']."' value='".$value['idAgenda']."'/><label for='agenda_".$value['idAgenda']."'>&nbsp;&nbsp;".$value['titre']."</label><br />";
 		}
 	?>
@@ -68,4 +69,7 @@
 <body>
 
 <div style="display: block;" id='calendar'></div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop

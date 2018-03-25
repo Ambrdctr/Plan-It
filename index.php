@@ -1,10 +1,11 @@
 <?php
 	session_start();
 	// Model
+	include_once "model/eviterRenvoiFormulaire.php";
 	include_once "model/bdd.php";
 	include_once "model/ajouts.php";
 	include_once "model/connexion.php";
-
+	include_once "model/notification.php";
 	include_once "model/suppressions.php";
 	include_once "model/recup_data.php";
 

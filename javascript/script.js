@@ -74,4 +74,7 @@ function cacher(id) {
 	document.getElementById(id).style.display = "none";
 
 }
+<<<<<<< HEAD
 >>>>>>> raphael
+=======
+>>>>>>> develop

@@ -14,6 +14,7 @@
 	<!-- Ajouts des fiches de style -->
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.min.css" />
 	<link rel="stylesheet" type="text/css" href="./css/bootstrap-datetimepicker.min.css" />
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 	<link rel='stylesheet' href='./css/fullcalendar.min.css' />
@@ -25,11 +26,30 @@
 	<link rel="icon" href="./images/favicon.ico" />
 </head>
 <body>
+<<<<<<< HEAD
+=======
+	
+>>>>>>> develop
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
 					<a class="navbar-brand" href="." id="logo_A">
 				    <img src="./images/logo_P.png" width="30" height="30" class="d-inline-block align-top" alt="P">
 				    <img src="./images/logo.png" width="70" height="30" class="d-inline-block align-top" alt="Plan'it" id="logo">
 				  </a>
+
+				  	<?php
+					if (isset($_SESSION['error'])) {
+						echo "<div class='alert alert-danger' role='alert'>";
+
+						echo "<p>".$_SESSION['error']."</p>";
+						unset($_SESSION['error']);
+						echo "</div>";
+
+					}
+
+
+					?>
+
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
@@ -72,18 +92,28 @@
 										<input type="hidden" name="action" value="PLANNING">
 									</form>
 									<a class="dropdown-item" href="#" onclick="document.getElementById('planning_form').submit();"><span class='fa fa-calendar fa-fw' aria-hidden='true'></span>&nbsp;&nbsp;Mon planning</a>
+
 									<form method="post" action="." id="agenda_form">
 										<input type="hidden" name="action" value="INFOAGENDA">
 									</form>
 									<a class="dropdown-item" href="#" onclick="document.getElementById('agenda_form').submit();"><span class='fa fa-book fa-fw' aria-hidden='true'></span>&nbsp;&nbsp;Mes agendas</a>
+
 									<div class="dropdown-divider"></div>
 									<form method="post" action="." id="groupe_form">
 										<input type="hidden" name="action" value="INFOGROUPE">
 									</form>
 									<a class="dropdown-item" href="#" onclick="document.getElementById('groupe_form').submit();"><span class='fa fa-group fa-fw' aria-hidden='true'></span>&nbsp;&nbsp;Mes groupes</a>
-									<a class="dropdown-item bg-grey" href="#"><span class='fa fa-bell-o fa-fw' aria-hidden='true'></span>&nbsp;&nbsp;Notification&nbsp;&nbsp;<span class="badge badge-primary ">0</span></a>
+
+									<form method="post" action="." id="notification_form">
+										<input type="hidden" name="action" value="NOTIFICATION">
+									</form>
+									<a class="dropdown-item bg-grey" href="#" onclick="document.getElementById('notification_form').submit()";><span class='fa fa-bell-o fa-fw' aria-hidden='true'></span>&nbsp;&nbsp;Notifications&nbsp;&nbsp;<span class="badge badge-primary "><?php echo get_number_notification($_SESSION['log']); ?></span></a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#" onclick="document.getElementById('groupe_form').submit();"><span class='fa fa-user-circle fa-fw' aria-hidden='true'></span>&nbsp;&nbsp;Mon profil</a>
+
+									<a class="dropdown-item" href="#" onclick="document.getElementById('profil_form').submit();"><span class='fa fa-user-circle fa-fw' aria-hidden='true'></span>&nbsp;&nbsp;Mon profil</a>
+									<form method="post" action="." id="profil_form">
+										<input type="hidden" name="action" value="PROFIL">
+									</form>
 									<form method="post" action="." class="text-center">
 										<button class="btn btn-danger" name='action' type='submit' value='SIGNOUT'><span>Deconnexion</span>&nbsp;&nbsp;<span class='fa fa-sign-out' aria-hidden='true'></span></button>
 									</form>
@@ -94,6 +124,8 @@
 	    	?>
 				</div>
 			</nav>
+
+		
 
 <!-- Modals -->
 
@@ -125,13 +157,17 @@
 						<label for='id_pwd2'>Confirmation du mot de passe<sup class='required'>*</sup></label>
 						<input type='password' class="form-control" name='pwd2' id='id_pwd2' required placeholder="Confirmation"/>
 					</div>
+					<div class="form-group">
+						<label for='id_agenda_utilisateur'>Nom de votre agenda personnel<sup class='required'>*</sup></label>
+						<input type='text' class="form-control" name='nom_agenda' id='id_agenda_utilisateur' required placeholder="Nom de l'agenda"/>
+					</div>
 					<p class='required'><sup>*</sup> Champs requis</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 
 					<!-- Envoi -->
-					<button name='action' type='submit' value='CREER' class="btn btn-primary">Inscription</button>
+					<button name='action' type='submit' value='CREER_compte' class="btn btn-primary">Inscription</button>
 				</div>
 			</form>
 			</div>

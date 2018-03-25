@@ -36,9 +36,15 @@
 		$debutTime = $event['debutTime'];
 		$finTime = $event['finTime'];
 		$lieu = $event['lieu'];
+<<<<<<< HEAD
 		var_dump($type);
 		var_dump($desc);
 		var_dump($groupe);
+=======
+		/*var_dump($type);
+		var_dump($desc);
+		var_dump($groupe);*/
+>>>>>>> develop
 
 		# Si l'évennement est prioritaire
 		if (isset($event['prio'])) {

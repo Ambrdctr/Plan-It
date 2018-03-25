@@ -3,6 +3,7 @@
 
 	$arrayadmin = groupes_by_user($_SESSION['log']);
 	$arraysimple = all_groupe_user($_SESSION['log']);
+<<<<<<< HEAD
 
 	if (count($arrayadmin) == 0 && count($arraysimple) == 0) {
 		echo "Vous ne faites partis d'aucun groupe";
@@ -56,6 +57,81 @@
 </section>
 
 
+=======
+?>
+		<table class='table table-bordered'>
+			<caption>Listes de vos Groupes</caption>
+			<tr>
+				<th> Groupes <a href='#' data-toggle='modal' data-target='#creategroupeModal'<i class='fa fa-plus'></i></a></th>
+			</tr>
+			<?php
+			if (count($arrayadmin) != 0){
+				foreach($arrayadmin as $row) {
+					?>
+					<tr>
+						<td>
+							<div class="btn-group-vertical">
+		      					<div class="btn-group dropright" role="group">
+		        					<button <?php echo "id='id_modif_".$row['nom']."'"; ?> type="button" class="btn btn-light dropdown-toggle text-left" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<i class='fa fa-user-circle-o'></i> &nbsp; <?php echo $row['nom']; ?>
+									</button>
+									<div class="dropdown-menu" <?php echo "aria-labelledby='id_modif_" . $row['nom'] . "'"; ?>>
+		            					<nav aria-label="...">
+						              	<ul class="pagination pagination-md">
+						                	<li class="page-item"><a class="page-link" href="#" data-toggle='modal' data-target='#adduserModal' onclick="changeGrp_selected_add('<?php echo $row['nom']; ?>');"><span class="fa fa-user-plus text-success"></span></a></li>
+						                	<li class="page-item"><a class="page-link" href="#" data-toggle='modal' data-target='#deleteuserModal' onclick="changeGrp_selected_del('<?php echo $row['nom']; ?>');"><span class="fa fa-user-times text-danger"></span></a></li>
+						              	</ul>
+						            	</nav>
+						          		<div class="dropdown-divider"></div>
+						          			<p>Agenda : <?php echo get_agenda_by_groupe($row['nom']); ?> </p>
+						          		<div class="dropdown-divider"></div>
+						          			<p>Description : <?php echo get_desc_group($row['nom']); ?> </p>
+
+
+						        	</div>
+						    	</div>
+						    </div>
+						</td>
+					</tr>
+
+				<?php
+				}
+			}
+			if (count($arraysimple) != 0) { 
+				foreach($arraysimple as $row) {
+					?>
+					<tr>
+						<td>
+							<div class="btn-group-vertical">
+		      					<div class="btn-group dropright" role="group">
+		        					<button <?php echo "id='id_modif_".$row."'"; ?> type="button" class="btn btn-light dropdown-toggle text-left" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<?php echo $row; ?>
+									</button>
+									<div class="dropdown-menu" <?php echo "aria-labelledby='id_modif_" . $row . "'"; ?>>
+											<p>Agenda : <?php echo get_agenda_by_groupe($row); ?> </p>
+										<div class="dropdown-divider"></div>
+		            						<p>Description : <?php echo get_desc_group($row); ?> </p>
+
+
+						        	</div>
+						    	</div>
+						    </div>
+						</td>
+					</tr>
+					<?php
+				}
+			}
+			if ((count($arraysimple) == 0) && (count($arrayadmin) == 0)) {
+				echo "<tr>";
+				echo "<td> Vous ne faites partit d'aucun groupe </td>";
+				echo "</tr>"; 
+			}
+?>
+	</table>
+</section>
+
+
+>>>>>>> develop
 
 
 
@@ -79,6 +155,13 @@
 						<label for='id_description'>Description:<sup class='required'>*</sup></label>
 						<input type='text' class="form-control" name='description' id='id_description' required placeholder="Description"/>
 					</div>
+<<<<<<< HEAD
+=======
+					<div class="form-group">
+						<label for='id_agenda_groupe'>Nom de l'agenda du groupe:<sup class='required'>*</sup></label>
+						<input type='text' class="form-control" name='nom_agenda' id='id_agenda_groupe' required placeholder="Nom de l'agenda"/>
+					</div>
+>>>>>>> develop
 					<p class='required'><sup>*</sup> Champs requis</p>
 				</div>
 				<div class="modal-footer">
